@@ -69,3 +69,6 @@ html,body {
     44% { left: -220px; }
     100% { left: -280px; }
   }
+  a{
+      color: white;
+  }
