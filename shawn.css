@@ -1,0 +1,287 @@
+html {
+    min-height: 100vh;
+  }
+  
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+    background-color: #ff9;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  #board {
+    -webkit-transform: rotateX(40deg) rotate(45deg);
+            transform: rotateX(40deg) rotate(45deg);
+    height: 100%;
+    background-color: #68C285;
+    -webkit-transition: .6s -webkit-transform;
+            transition: .6s transform;
+  }
+  
+  .container {
+    -webkit-perspective: 200vh;
+            perspective: 200vh;
+    margin: 0 auto;
+    height: 80vmin;
+    width: 80vmin;
+    position: relative;
+  }
+  .container, .container div {
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+  }
+  
+  .piece {
+    position: absolute;
+    height: 10%;
+    width: 10%;
+    z-index: 2;
+  }
+  
+  .wall {
+    background-color: #343454;
+  }
+  .wall .box-roof {
+    background-color: #908797;
+  }
+  .wall .box-wall {
+    background-color: #343454;
+  }
+  .wall.us .box-wall-1, .wall.ds .box-wall-2 {
+    background-color: transparent;
+  }
+  .wall.ls .box-wall-3, .wall.rs .box-wall-4 {
+    display: none;
+  }
+  .wall.ls .box-roof:after, .wall.ds .box-roof:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #908797;
+  }
+  .wall.ls .box-roof:after {
+    -webkit-transform: translateX(-10%);
+        -ms-transform: translateX(-10%);
+            transform: translateX(-10%);
+  }
+  .wall.ds .box-roof:before {
+    -webkit-transform: translateY(10%);
+        -ms-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+  
+  .box {
+    background-color: #CBCAC8;
+    -webkit-transition: all .2s;
+            transition: all .2s;
+  }
+  .box .box-roof {
+    background-color: #FFFAF4;
+  }
+  .box .box-wall {
+    background-color: #CBCAC8;
+  }
+  
+  .dropzone {
+    background-color: #169979;
+    z-index: 1;
+  }
+  
+  .player {
+    -webkit-transition: all .2s;
+            transition: all .2s;
+  }
+  .player .box-roof {
+    box-sizing: border-box;
+    background-color: #E92830;
+    padding: 20%;
+  }
+  .player .box-wall {
+    background-color: #922124;
+  }
+  
+  .box-wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: fuchsia;
+  }
+  
+  .box-roof {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+  }
+  
+  .box-wall-1 {
+    top: auto;
+    bottom: 100%;
+    -webkit-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+    -webkit-transform: rotateX(-90deg);
+            transform: rotateX(-90deg);
+  }
+  
+  .box-wall-2 {
+    -webkit-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+    -webkit-transform: rotateX(270deg);
+            transform: rotateX(270deg);
+  }
+  
+  .box-wall-3 {
+    -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: rotateY(-90deg);
+            transform: rotateY(-90deg);
+  }
+  
+  .box-wall-4 {
+    background-color: aqua;
+    -webkit-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: rotateY(90deg);
+            transform: rotateY(90deg);
+  }
+  
+  #success-message {
+    color: #FFF;
+    position: fixed;
+    top: calc(50% - 1.5em);
+    left: calc(50% - 5em);
+    background-color: #272930;
+    line-height: 3em;
+    font-size: 1.4em;
+    width: 10em;
+    text-align: center;
+    border-radius: .2em;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transition: .4s -webkit-transform;
+            transition: .4s transform;
+  }
+  #success-message.hidden {
+    opacity: 0;
+    -webkit-transform: rotateX(-180deg);
+            transform: rotateX(-180deg);
+  }
+  
+  .controls {
+    background-color: #272930;
+    color: #FFF;
+    position: fixed;
+    bottom: 0;
+    left: calc(50% - 14em);
+    width: 28em;
+    z-index: 2;
+    text-align: center;
+    color: #989AA4;
+    border-radius: .2em .2em 0 0;
+  }
+  .controls h2:after {
+    content: ":";
+  }
+  .controls a {
+    cursor: pointer;
+  }
+  .controls h2, .controls a {
+    padding: .6em .6em;
+    margin: 0;
+    display: inline-block;
+    font-size: 1em;
+  }
+  .controls a:hover,
+  .controls a:active {
+    background-color: #1E2025;
+    color: #FFF;
+  }
+  .controls h2 {
+    color: #FFF;
+  }
+  
+  .head {
+    -webkit-animation: float 2s alternate infinite;
+            animation: float 2s alternate infinite;
+    height: 90%;
+    width: 90%;
+    margin: 5% auto 0;
+    background-color: #922124;
+  }
+  
+  .eyes {
+    height: 20%;
+    padding: 25% 10% 15%;
+  }
+  .eyes .eye {
+    height: 100%;
+    width: 20%;
+    margin: 0 15%;
+    background-color: #112F2A;
+    float: left;
+    border-radius: 50%;
+  }
+  
+  .mouth {
+    width: 60%;
+    height: 20%;
+    background-color: #112F2A;
+    margin: 0 auto;
+    border-radius: 10% 10% 50% 50% / 40% 40% 80% 80%;
+  }
+  
+  .hat {
+    box-sizing: border-box;
+    background-color: #403C3D;
+    border-radius: 50%;
+    height: 100%;
+    padding: 20%;
+  }
+  
+  .hat__top {
+    border-radius: 50%;
+    background-color: #231F20;
+    height: 100%;
+  }
+  .hat__top div {
+    border-radius: 50%;
+    background-color: #231F20;
+    height: 100%;
+    -webkit-transform: translateZ(0.4vmin);
+            transform: translateZ(0.4vmin);
+  }
+  .hat__top .hat__roof {
+    background-color: #403C3D;
+  }
+  
+  .low-quality .box-wall-1,
+  .low-quality .box-wall-3,
+  .low-quality .box-wall-4 {
+    display: none;
+  }
+  .low-quality .box-wall-2 {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+  .low-quality .head {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
