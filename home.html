@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="shawn.css">
+</head>
+<body>
+    <div class="container">
+        <div id="board"></div>
+      </div>
+      <div class="controls"><a onclick="sokoban.restart()" class="view-top">RESET</a>
+        <h2>Turn</h2><a onclick="sokoban.rotate(false)">Left</a><a onclick="sokoban.rotate(true)">Right</a>
+        <h2 class="not-low-quality">size</h2><a onclick="sokoban.toggleQuality()" class="not-low-quality">Flat</a>
+      </div>
+      <div id="success-message" class="hidden">You win</div>
+      <div id="player-markup" style="display:none">
+        <div class="head">
+          <div class="box-wall box-wall-1">
+            <div class="box-roof">
+              <div class="hat">
+                <div class="hat__top">
+                  <div class="hat__band">
+                    <div>
+                      <div>
+                        <div>
+                          <div class="hat__roof"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-wall box-wall-2">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="box-wall box-wall-3"></div>
+          <div class="box-wall box-wall-4"></div>
+        </div>
+      </div>
+      <div id="box-markup" style="display:none">
+        <div class="box-wall box-wall-1">
+          <div class="box-roof"></div>
+        </div>
+        <div class="box-wall box-wall-2"></div>
+        <div class="box-wall box-wall-3"></div>
+        <div class="box-wall box-wall-4"></div>
+      </div>
+    
+</body>
+<script src="shawn.js"></script>
+</html>
